@@ -100,20 +100,9 @@ async function getFiles(input_file_directory,output_file_directory) {
   //writeoutindexfile();
 } 
 
-//getFiles("C:/Users/e035945/OneDrive - Mastercard/New API Flow/Website Version 3/");
-// usage is the name of the directory where you have the HTML and then the types of files you want S for SOAP and R for Rest. You can change one to N if you dont want to write out any. i/e/ "R","N" will just write out rest 
-
-// this can be run in vscode using node.js... 
-// parameter 1 > name of the file direcotry with forward slashes
-// parameter 2 > do you want soap services exported to the index file ? (S for yes, X for no)
-// parameter 3 > do you want rest services exported to the index file ? (R for yes, X for no)
-// parameter 4 > the name of the index file 
-// parameter 5 > the list of web services that you would like to be written out
-// parameter 6 > the directory that you want the 
-
 console.log("static_ssi (C) 2025");
 // this section can be used to put out a client specific version of the web services that are actually requied.
-//client_file = ["Mastercard","*"];                                 // << this is the standard version and will write out everything that is processed. 
+
 
 // C:\Temp\Web_Service_Web_Demo\templates
               // << this is the custom version so uncomment this one if you want a specific version
