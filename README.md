@@ -6,7 +6,7 @@ Fast forward to 2025 and I needed to build a website using some templates. There
 
 The way to build file is to create a .con file for each web page you want and then to insert server side includes and any inline HTML you want. 
 
-The format of the servier side iclude is ... [code]<!--#include file="main_template_header.tpl" -->[/code]
+The format of the servier side iclude is ... ```<!--#include file="main_template_header.tpl" -->```
 
 The NODE.JS script will then read through each .con file, convert it into a .htm file and replace any #include directives with the associated file that you want. I chose to use .tpl but you can use whatever you like.
 
