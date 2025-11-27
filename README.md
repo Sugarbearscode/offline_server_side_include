@@ -4,7 +4,9 @@ Fast forward to 2025 and I needed to build a website using some templates. There
 
 **In simple terms this program does what a server would do, it adds include files into HTML. The difference is that it then writes out the files to a directory that you can then use. It's ideal for websites where you have many pages that use common elements. In my case I have a header template, footer template and sidebar template which are common across all the pages. I can then concentrate on the content (I used https://html5-editor.net/ to generate the meat of the content). If any tweaks are needed or new pages it's simple to amend the template and generate the whole set of pages again. **
 
-The way to build file is to create a .con file for each web page you want and then to insert server side includes and any inline HTML you want. <!--#include file="main_template_header.tpl" -->
+The way to build file is to create a .con file for each web page you want and then to insert server side includes and any inline HTML you want. 
+
+The format of the servier side iclude is ... <!--#include file="main_template_header.tpl" -->
 
 The NODE.JS script will then read through each .con file, convert it into a .htm file and replace any #include directives with the associated file that you want. I chose to use .tpl but you can use whatever you like.
 
