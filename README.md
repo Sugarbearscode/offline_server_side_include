@@ -1,4 +1,4 @@
-# h1 Offline Server Side Include NODE.JS script
+# Offline Server Side Include NODE.JS script
 
 The background to this project is that back in 2006 I worked on an inhouse website using Microsoft IIS and I found that server side includes were amazing.
 
