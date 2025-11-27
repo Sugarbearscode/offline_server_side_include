@@ -64,7 +64,7 @@ function Processtheincludes(htmlcontent,includedirectory) {
     return newtext;
 }
 
-async function getFiles(input_file_directory,output_file_directory) {
+async function getFiles(input_file_directory,output_file_directory,filetype) {
   const files = await readdir(input_file_directory, { recursive: false });
   const file_nm = files.map((filename) => `${filename}`);    
   file_nm.sort(); //sort the file names into order
@@ -77,7 +77,7 @@ async function getFiles(input_file_directory,output_file_directory) {
   console.log("Starting to read Files") 
   for (let i = 0; i < file_nm.length; i++) {
     // I only want to change .con files
-    if ((file_nm[i].slice(-4)) == ".con") {
+    if ((file_nm[i].slice(-4)) == filetype) {
       full_path = input_file_directory.concat(file_nm[i]);
       const data = fs.readFileSync(full_path, 'utf8');           // read the contents of the file into the variable data
       new_file_name = output_file_directory.concat(file_nm[i].slice(0,-4).concat('.htm'));  // this is the output directory / file name     
@@ -102,10 +102,10 @@ async function getFiles(input_file_directory,output_file_directory) {
 
 console.log("static_ssi (C) 2025 - V1");
 // this section can be used to put out a client specific version of the web services that are actually requied.
-
+filetype = ".htm"; // this is the type of file that will contain the pages you want to create and can contain includes (even if they dont include any #include directives they will still be copied across to the output directory
 input_file_directory = "C:/Temp/Web_Service_Web_Demo/templates/"
 output_file_directory = input_file_directory.concat("output").concat("/"); //  will be written out to whatever directory is in the first element in the client_file array
 // now go process those files! 
-getFiles(input_file_directory,output_file_directory);
+getFiles(input_file_directory,output_file_directory,filetype);
 
 console.log("Completed")
