@@ -1,8 +1,10 @@
-# h1 The background to this project is that back in 2006 I worked on an inhouse website using Microsoft IIS and I found that server side includes were amazing.
+# h1 Offline Server Side Include NODE.JS script
+
+The background to this project is that back in 2006 I worked on an inhouse website using Microsoft IIS and I found that server side includes were amazing.
 
 Fast forward to 2025 and I needed to build a website using some templates. There are many templating tools out there but I can't use open source in the environment I am allowed/wanted to build things in so my only option was to hack together a simple node.js/javascript program to do it for me. 
 
-# h2 In simple terms this program does what a server would do, it adds include files into HTML content using the include directive. The difference is that it then writes out the files to a directory that you can then use. It's ideal for websites where you have many pages that use common elements. In my case I have a header template, footer template and sidebar template which are common across all the pages. I can then concentrate on the content (I used https://html5-editor.net/ to generate the meat of the content). If any tweaks are needed or new pages it's simple to amend the template and generate the whole set of pages again. **
+In simple terms this program does what a server would do, it adds include files into HTML content using the include directive. The difference is that it then writes out the files to a directory that you can then use. It's ideal for websites where you have many pages that use common elements. In my case I have a header template, footer template and sidebar template which are common across all the pages. I can then concentrate on the content (I used https://html5-editor.net/ to generate the meat of the content). If any tweaks are needed or new pages it's simple to amend the template and generate the whole set of pages again. **
 
 The way to build file is to create a .con file for each web page you want and then to insert server side includes and any inline HTML you want. 
 
