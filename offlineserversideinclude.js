@@ -19,7 +19,7 @@ function readinfile(name){
   // writes out the htm file (if it is to be included)
   console.log("Reading File >".concat(name));
     try {
-        const data2 = fs.readFileSync(name, { encoding: 'utf8', flag: 'r' });
+        data2 = fs.readFileSync(name, { encoding: 'utf8'});
         //console.log('input2.txt content:', data2);
     } catch (err) {
         console.error('Error reading file:'.concat(name), err);
@@ -30,37 +30,37 @@ function readinfile(name){
 function Processtheincludes(htmlcontent,includedirectory) {
     // this section will replace the html includes with the include file
     // match all the includes using the regex express 
-
+    console.log("Processing Includes");
     let text = htmlcontent;
     let newtext = text;
     let texttoreplace = '';
     let spattern = '<!--#include file="';
     let epattern = '" -->';
 
-    i = 0 
-    indexstart = 0
-    
-    while (indexstart >= 0) {
-        indexstart = text.indexOf(spattern,i);
-        if (indexstart >=0) {
-            i += indexstart;
-            indexend = text.indexOf(epattern,i);
+    i = 0;                                 // this is the index point in the file
+    indexstart = 0;
+    console.log();
+    while (i <= text.length) {
+        console.log("i ".concat(i).concat(" text length ").concat(text.length));
+        indexstart = text.indexOf(spattern,i);    // find the start pattern
+        indexend = text.indexOf(epattern,i);      // find the end pattern  
+
+        if (indexstart >=0 && indexend >=0 && indexend > indexstart)  {     // means we have found a match..
+            console.log("Processing an include");
             indexlength = indexend-indexstart; 
-            i += indexend;
-            console.log(indexstart);
-            console.log(indexend);
-            console.log(indexlength);  
+            console.log("Start > ".concat(indexstart).concat(" > end > ").concat(indexend).concat(" > length > ").concat(indexlength));           
             replacestring = text.slice(indexstart,indexend+epattern.length);                                // this is the thing that needs replacing..     
-            includefilename = includedirectory.concat(text.slice(indexstart+spattern.length,indexend));     // this is the file name in the replace.     
-            texttoreplace = readinfile(includefilename);                                                    // get the text to replace the string 
-            // add some error checking here to make sure there aren't any includes in the data being read in
-            newtext = newtext.replace(replacestring,texttoreplace);                                         // then replace the text in here 
+            includefilename = includedirectory.concat(text.slice(indexstart+spattern.length,indexend));     // this is the file name in the replace.   
+            console.log("INCLUDE FILE NAME : ".concat(includefilename));  
+            texttoreplace = readinfile(includefilename);     // get the text to replace the string 
+            // could add something here to check if the texttoreplace field contains any includes which wont get processed 
+            newtext = newtext.replace(replacestring,texttoreplace);  // then replace the text in here 
+            i = i + indexend + epattern.length;
+        }
+        if (indexstart == -1){
+          i = text.length + 1
         }
     }
-    // 1. find the next server side
-    // 2. read the file (output a message if the file can't be found)
-    // 3. replace the include with the content of the file
-    // 4. repeat until no more includes are found
     return newtext;
 }
 
@@ -81,11 +81,11 @@ async function getFiles(input_file_directory,output_file_directory) {
       full_path = input_file_directory.concat(file_nm[i]);
       const data = fs.readFileSync(full_path, 'utf8');           // read the contents of the file into the variable data
       new_file_name = output_file_directory.concat(file_nm[i].slice(0,-4).concat('.htm'));  // this is the output directory / file name     
-      console.log("File Name : ".concat(file_nm[i]));            // this is full path of the .con file that we want to process
-      console.log("New File Name : ".concat(new_file_name));     // this is full path of the file that we want to write out
-      console.log("Content of file".concat(data));               // this contains the data within the file 
+      console.log("File Name to process : ".concat(file_nm[i]));            // this is full path of the .con file that we want to process
+      //console.log("New File Name : ".concat(new_file_name));     // this is full path of the file that we want to write out
+      //console.log("Content of file".concat(data));               // this contains the data within the file 
       new_data = Processtheincludes(data,input_file_directory);                     // process all the includes within the file by calling the function
-      new_data = data;
+      //new_data = data;
       writeoutfile(new_data,new_file_name);               // now write out the data to the output directory
       //new_name.push(new_file_name);
       //old_name.push(file_nm[i]);
@@ -100,12 +100,9 @@ async function getFiles(input_file_directory,output_file_directory) {
   //writeoutindexfile();
 } 
 
-console.log("static_ssi (C) 2025");
+console.log("static_ssi (C) 2025 - V1");
 // this section can be used to put out a client specific version of the web services that are actually requied.
 
-
-// C:\Temp\Web_Service_Web_Demo\templates
-              // << this is the custom version so uncomment this one if you want a specific version
 input_file_directory = "C:/Temp/Web_Service_Web_Demo/templates/"
 output_file_directory = input_file_directory.concat("output").concat("/"); //  will be written out to whatever directory is in the first element in the client_file array
 // now go process those files! 
