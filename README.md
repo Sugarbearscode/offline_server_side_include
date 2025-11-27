@@ -8,9 +8,13 @@ In simple terms this program does what a server would do, it adds include files 
 
 ---
 
-The way to build a file is to create a .con file for each web page you want and then to insert server side includes and any inline HTML you want. 
+The way to build a file is to create a .htm file for each web page you want and then to insert server side includes and any inline HTML you want. 
 
-The format of the server side iclude is ... ```<!--#include file="main_template_header.tpl" -->```
+You can then create some template files that can use to copy into your .htm files. Note that I chose .tpl but the file can be any name you like as long as it doesn't end with .htm
+
+The format of the server side iclude within your .htm pages is standard i.e. ```<!--#include file="exampletemplate.tpl" -->``` in this case the contents of exampletemplate.tpl will be copied into the .htm file and will replace the include directive. 
+
+The script itself will iterate through all the .htm files, find the include directives within each, copy/replace the include directive with the file content and then write out a new .htm file to the output directory. 
 
 The NODE.JS script will then read through each .con file, convert it into a .htm file and replace any #include directives with the content of the associated file that you want (and replace the include directive). I chose to use .tpl as the naming convention for the templates but it would be simple to change to an alternative if needed.
 
@@ -20,18 +24,18 @@ Just be aware that it doesn't check for recursion so I have avoided adding any i
 How to make it all work
 1. download all the attached files
 2. make sure you have downloaded Microsoft VSCODE (so you can run the node.js script)
-3. create a directory called "C:\Temp\Web_Service_Web_Demo\templates\output"
-3. create a directory called "C:\Temp\Web_Service_Web_Demo\templates"
-4. copy the example.con and exampletemplate.tpl files to the \templates directory
+3. create a directory called "C:\Temp\Web_Service_Web_Demo\templates\output" - you can all the directory what you like, just make you sure you change the script
+3. create a directory called "C:\Temp\Web_Service_Web_Demo\templates"        - as above. but the output directory should be the input directory name plus \output
+4. copy the example.htm and exampletemplate.tpl files to the \templates directory (or whatver you have decided to call the directory)
 5. Run the .js script in VCODE..
-6. Watch the magic happen.. (or fix any bugs)
+6. Watch the magic happen.. (and/or fix any bugs)
 7. Check there are no error messages from the script (fix those and move back two steps)
-8. Click on the example.htm file in the output directory to open the web page in a browser
+8. Click on the example.htm file in the **output** directory to open the web page in a browser
 9. You should see a web page with the following '''and this my first include!! Hello World !!'''
-10. Start building a real website using template files and .con files!! 
+10. Start building a real website using template files and .htm files!! 
 
 ---
-It's a simple script, it doesn't do much and relies on you to run and debug if there are any errors (i.e. if you use a file in a directive it will error) but it's relatively small and simple and it can be run from vscode. 
+It's a simple script, it doesn't do much and relies on you to run and debug if there are any errors (i.e. if you use a file that doesnt exist in an #include directive it will error) but it's relatively small and simple and it can be run from vscode. 
 
 ---
-It was all built on windows 11 (sorry about that) so it will almost certainly need tweaking to work on macos or linux. 
+It was all built on windows 10/11 (sorry about that) so it will almost certainly need tweaking to work on macos or linux (I have not tested yet). 
