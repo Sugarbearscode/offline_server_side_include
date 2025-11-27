@@ -8,11 +8,11 @@ In simple terms this program does what a server would do, it adds include files 
 
 ---
 
-The way to build file is to create a .con file for each web page you want and then to insert server side includes and any inline HTML you want. 
+The way to build a file is to create a .con file for each web page you want and then to insert server side includes and any inline HTML you want. 
 
-The format of the servier side iclude is ... ```<!--#include file="main_template_header.tpl" -->```
+The format of the server side iclude is ... ```<!--#include file="main_template_header.tpl" -->```
 
-The NODE.JS script will then read through each .con file, convert it into a .htm file and replace any #include directives with the associated file that you want. I chose to use .tpl but you can use whatever you like.
+The NODE.JS script will then read through each .con file, convert it into a .htm file and replace any #include directives with the content of the associated file that you want (and replace the include directive). I chose to use .tpl as the naming convention for the templates but it would be simple to change to an alternative if needed.
 
 Just be aware that it doesn't check for recursion so I have avoided adding any include directives into the templates files that I am using.  
 
@@ -25,7 +25,7 @@ How to make it all work
 4. copy the example.con and exampletemplate.tpl files to the \templates directory
 5. Run the .js script in VCODE..
 6. Watch the magic happen.. (or fix any bugs)
-7. Check there are no error messages from the script.
+7. Check there are no error messages from the script (fix those and move back two steps)
 8. Click on the example.htm file in the output directory to open the web page in a browser
 9. You should see a web page with the following '''and this my first include!! Hello World !!'''
 10. Start building a real website using template files and .con files!! 
