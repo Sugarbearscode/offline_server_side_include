@@ -16,5 +16,5 @@ It's simple, it doesn't do much and relies on you to run and debug if there are 
 
 and example.con file is include which includes a single include file to get you started. 
 
-Just change the value of "C:\Temp\Web_Service_Web_Demo\templates" to whatever directory you are using and off you go. 
+Just change the value of "C:\Temp\Web_Service_Web_Demo\templates" (And a "C:\Temp\Web_Service_Web_Demo\templates\output" directory) to whatever directory you are using and off you go. 
 
