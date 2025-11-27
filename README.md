@@ -33,6 +33,5 @@ How to make it all work
 ---
 It's a simple script, it doesn't do much and relies on you to run and debug if there are any errors (i.e. if you use a file in a directive it will error) but it's relatively small and simple and it can be run from vscode. 
 
-Just change the value of "C:\Temp\Web_Service_Web_Demo\templates" (And a "C:\Temp\Web_Service_Web_Demo\templates\output" directory) to whatever directory you are using and off you go. 
 ---
-It was all built on windows (sorry about that) so it will almost certainly need tweaking to work on macos or linux. 
+It was all built on windows 11 (sorry about that) so it will almost certainly need tweaking to work on macos or linux. 
